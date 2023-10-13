@@ -225,18 +225,82 @@ public:
         }
     }
 };
+template <typename T>
+class Stack
+{
+    private:
+        LinkedList<T> ls;
+    public:
+        Stack()
+        {
+
+        }
+        void push(T val)
+        {
+            ls.insertAtTail(val);
+        }
+        T pop()
+        {
+            T val = ls.getTail();
+            ls.removeEnd();
+            return val;
+        }
+        bool isEmpty()
+        {
+            if (ls.isEmpty())
+            {
+                return true;
+            }
+            false;
+        }
+        void display()
+        {
+            ls.display();
+        }
+};
+template <typename T>
+class Queue
+{
+    private:
+        LinkedList<T> ls;
+    public:
+        Queue()
+        {
+
+        }
+        void enqueue(T val)
+        {
+            ls.insertAtTail(val);
+        }
+        T dequeue()
+        {
+            ls.removeFront();
+        }
+        bool isEmpty()
+        {
+            if (ls.isEmpty())
+            {
+                return true;
+            }
+            return false;
+        }
+        void display()
+        {
+            ls.display();
+        }
+};
 
 int main()
 {
-    LinkedList<int> obj;
-    obj.insertAtFront(1);
-    obj.insertAtTail(2);
-    obj.insertAtTail(3);
-    obj.insertAtTail(4);
-    obj.display();
-    cout << endl;
-    obj.removeMiddle();
-    obj.display();
+    // LinkedList<int> obj;
+    // obj.insertAtFront(1);
+    // obj.insertAtTail(2);
+    // obj.insertAtTail(3);
+    // obj.insertAtTail(4);
+    // obj.display();
+    // cout << endl;
+    // obj.removeMiddle();
+    // obj.display();
     // obj.removeFront();
     // obj.display();
     // obj.removeEnd();
@@ -251,4 +315,22 @@ int main()
     // Node* search = obj.search(2);
     // cout <<  search -> value;
 
+    // Stack<int> s;
+    // s.push(1);
+    // s.push(2);
+    // s.push(3);
+    // int e = s.pop();
+    // s.display();
+    // cout << s.isEmpty();
+
+    // Queue<int> q;
+    // q.enqueue(1);
+    // q.enqueue(2);
+    // q.enqueue(3);
+    // q.display();
+    // cout << endl;
+    // cout << q.dequeue() << endl;
+    // q.display();
+    // cout << endl;
+    // cout << q.isEmpty() << endl;
 }
