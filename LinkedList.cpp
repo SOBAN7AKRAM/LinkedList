@@ -80,6 +80,28 @@ public:
             slow->next = temp;
         }
     }
+    T getMiddle()
+    {
+        if (isEmpty())
+        {
+            return false;
+        }
+        else if (head == tail)
+        {
+            return head -> value;
+        }
+        else 
+        {
+            Node<T> *fast = head -> next;
+            Node<T> *slow = head;
+            while (fast != nullptr && fast->next != nullptr)
+            {
+                slow = slow->next;
+                fast = fast->next->next;
+            }
+            return slow -> value;
+        }
+    }
     void insertAfter(T val, T key)
     {
         Node<T>* temp = new Node<T>(key);
@@ -217,6 +239,71 @@ public:
 
         }
     }
+    void reverse()
+    {
+        if (isEmpty() || head == tail)
+        {
+            return;
+        }
+        else
+        {
+            Node<T>* prev = nullptr;
+            Node<T>* current = head;
+            Node<T>* nxt = nullptr;
+            while (current != nullptr)
+            {
+                nxt = current -> next;
+                current -> next = prev;
+                if (prev = nullptr)
+                {
+                    tail = current;
+                }
+                prev = current;
+                current = nxt;
+            }
+            head = prev;
+        }
+        
+    }
+    void printRecursively(Node<T>* temp)
+    {
+        if (temp == nullptr)
+        {
+            return;
+        }
+        cout << temp -> value << " ";
+        temp = temp -> next;
+        printRecursively(temp);
+    }
+    void printReverseRecursively(Node<T>*& nxt, Node<T>*& current, Node<T>*& prev)
+    {
+        if (current == nullptr)
+        {
+            return;
+        }
+        nxt = current -> next;
+        current -> next = prev;
+        prev = current;
+        current = nxt;
+        printReverseRecursively(nxt, current, prev);
+    }
+    void displayRecursively()
+    {
+        Node<T>* temp = head;
+        printRecursively(temp);
+    }
+    void displayReverseRecursively()
+    {
+        Node<T>* nxt = nullptr;
+        Node<T>* current = head;
+        Node<T>* prev = nullptr;
+        printReverseRecursively(nxt, current, prev);
+        while (prev != nullptr)
+        {
+            cout << prev -> value << " ";
+            prev = prev -> next;
+        }
+    }
     void display()
     {
         for (Node<T> *s = head; s != nullptr; s = s->next)
@@ -292,11 +379,21 @@ class Queue
 
 int main()
 {
-    // LinkedList<int> obj;
-    // obj.insertAtFront(1);
-    // obj.insertAtTail(2);
-    // obj.insertAtTail(3);
-    // obj.insertAtTail(4);
+    LinkedList<int> obj;
+    obj.insertAtFront(1);
+    obj.insertAtTail(2);
+    obj.insertAtTail(3);
+    obj.insertAtTail(4);
+    obj.displayReverseRecursively();
+    // obj.displayRecursively();
+    // obj.display();
+    // cout << endl;
+    // obj.reverse();
+    // cout << endl;
+    // obj.display();
+    // cout << endl;
+    // cout << obj.getMiddle();
+    // cout << endl;
     // obj.display();
     // cout << endl;
     // obj.removeMiddle();
