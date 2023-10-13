@@ -1,22 +1,24 @@
 #include <iostream>
 using namespace std;
+template <typename T>
 class Node
 {
 
 public:
-    int value;
-    Node *next;
-    Node(int val)
+    T value;
+    Node<T> *next;
+    Node(T val)
     {
         value = val;
         next = nullptr;
     }
 };
+template <typename T>
 class LinkedList
 {
 private:
-    Node *head;
-    Node *tail;
+    Node<T> *head;
+    Node<T> *tail;
 
 public:
     LinkedList()
@@ -28,9 +30,9 @@ public:
     {
         return head == nullptr;
     }
-    void insertAtTail(int val)
+    void insertAtTail(T val)
     {
-        Node *temp = new Node(val);
+        Node<T> *temp = new Node<T>(val);
         if (isEmpty())
         {
             head = temp;
@@ -42,9 +44,9 @@ public:
             tail = temp;
         }
     }
-    void insertAtFront(int val)
+    void insertAtFront(T val)
     {
-        Node *temp = new Node(val);
+        Node<T> *temp = new Node<T>(val);
         if (isEmpty())
         {
             head = temp;
@@ -52,14 +54,14 @@ public:
         }
         else
         {
-            Node *s = head;
+            Node<T> *s = head;
             temp->next = s;
             head = temp;
         }
     }
-    void insertAtMid(int val)
+    void insertAtMid(T val)
     {
-        Node *temp = new Node(val);
+        Node<T> *temp = new Node<T>(val);
         if (isEmpty())
         {
             head = temp;
@@ -67,8 +69,8 @@ public:
         }
         else
         {
-            Node *fast = head -> next;
-            Node *slow = head;
+            Node<T> *fast = head -> next;
+            Node<T> *slow = head;
             while (fast != nullptr && fast->next != nullptr)
             {
                 slow = slow->next;
@@ -78,10 +80,10 @@ public:
             slow->next = temp;
         }
     }
-    void insertAfter(int val, int key)
+    void insertAfter(T val, T key)
     {
-        Node* temp = new Node(key);
-        Node* slow = head;
+        Node<T>* temp = new Node<T>(key);
+        Node<T>* slow = head;
         while (slow != nullptr)
         {
             if (slow -> value == val)
@@ -98,10 +100,10 @@ public:
             tail = temp;
         }
     }
-    void insertBefore(int val, int key)
+    void insertBefore(T val, T key)
     {
-        Node* temp = new Node(key);
-        Node* slow = head;
+        Node<T>* temp = new Node<T>(key);
+        Node<T>* slow = head;
         while (slow != nullptr)
         {
             if (slow -> next -> value == val)
@@ -113,16 +115,16 @@ public:
         temp -> next = slow -> next;
         slow -> next = temp;
     }
-    int getFront()
+    T getFront()
     {
         if (isEmpty())
         {
-            return -1;
+            return false;
         }
         return head -> value;
 
     }
-    int getTail()
+    T getTail()
     {
         if (isEmpty())
         {
@@ -130,9 +132,9 @@ public:
         }
         return tail -> value;
     }
-    Node* search(int val)
+    Node<T>* search(T val)
     {
-        Node* slow = head;
+        Node<T>* slow = head;
         while (slow != nullptr)
         {
             if (slow -> value == val)
@@ -157,7 +159,7 @@ public:
         }
         else
         {
-            Node* temp = head;
+            Node<T>* temp = head;
             head = head -> next;
             delete temp;
         }
@@ -176,7 +178,7 @@ public:
         }
         else
         {
-            Node* slow = head;
+            Node<T>* slow = head;
             while (slow -> next != tail)
             {
                 slow = slow -> next;
@@ -200,9 +202,9 @@ public:
         }
         else
         {
-            Node* slow = head;
-            Node* fast = head -> next;
-            Node* prev = head;
+            Node<T>* slow = head;
+            Node<T>* fast = head -> next;
+            Node<T>* prev = head;
             while (fast != nullptr && fast -> next != nullptr)
             {
                 prev = slow;
@@ -217,7 +219,7 @@ public:
     }
     void display()
     {
-        for (Node *s = head; s != nullptr; s = s->next)
+        for (Node<T> *s = head; s != nullptr; s = s->next)
         {
             cout << s->value << " ";
         }
@@ -226,7 +228,7 @@ public:
 
 int main()
 {
-    LinkedList obj;
+    LinkedList<int> obj;
     obj.insertAtFront(1);
     obj.insertAtTail(2);
     obj.insertAtTail(3);
